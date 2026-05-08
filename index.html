@@ -317,11 +317,15 @@
       h1.hero-title {
         font-family: "Noto Serif KR", serif;
         font-weight: 300;
-        font-size: clamp(40px, 5.4vw, 76px);
-        line-height: 1.18;
+        /* shrunk for accessibility-zoom users — vw-driven sizes
+           multiply with browser zoom and were overflowing the hero.
+           Was clamp(40px, 5.4vw, 76px). */
+        font-size: clamp(28px, 3.6vw, 52px);
+        line-height: 1.25;
         letter-spacing: -0.01em;
         color: var(--moss-deep);
         margin: 0 0 28px;
+        word-break: keep-all;
       }
       h1.hero-title .em {
         font-style: italic;
