@@ -1915,7 +1915,8 @@
       document.addEventListener("scroll", onScroll, { passive: true });
       onScroll();
 
-      // smooth scroll
+      // smooth scroll — offset by the actual nav height so anchor
+      // targets don't slip under the fixed navbar
       document.querySelectorAll('a[href^="#"]').forEach((a) => {
         a.addEventListener("click", (e) => {
           const id = a.getAttribute("href");
@@ -1923,8 +1924,9 @@
           const t = document.querySelector(id);
           if (!t) return;
           e.preventDefault();
+          const offset = nav.offsetHeight + 8;
           window.scrollTo({
-            top: t.getBoundingClientRect().top + window.scrollY - 60,
+            top: t.getBoundingClientRect().top + window.scrollY - offset,
             behavior: "smooth",
           });
         });
